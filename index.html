@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+</head>
+
+<body>
+    <button id="scrollTop">^</button>
+
+    <header class="d-flex justify-content-end align-items-center bg-dark p-3">
+        <nav class="pr-3">
+            <ul class="list-inline m-0">
+                <li class="list-inline-item"><a href="#sec-1">Secttion 1</a></li>
+                <li class="list-inline-item"><a href="#sec-2">Secttion 2</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="slide" id="sec-1">
+        <div class="slider">
+            <img class="img-fluid" src="https://images4.alphacoders.com/236/236764.jpg" alt="">
+            <img class="img-fluid"
+                src="http://www.v3wall.com/wallpaper/1920_1080/0911/1920_1080_20091116101646475772.jpg" alt="">
+            <img class="img-fluid"
+                src="https://www.pixelstalk.net/wp-content/uploads/2016/06/Beautiful-fashion-wallpaper-hd.jpg" alt="">
+            <a href="javascript:void(0)" id="next" onclick="clickSlide()"><i class="fa fa-angle-right"
+                    aria-hidden="true"></i></a>
+            <a href="javascript:void(0)" onclick="clickPrev()" id="prev"><i class="fa fa-angle-left"
+                    aria-hidden="true"></i></a>
+        </div>
+    </section>
+    <section class="pb-5" id="sec-2">
+        <div class="container">
+            <div class="row" id="data">
+            </div>
+        </div>
+    </section>
+    <footer class="w-100 text-center bg-dark text-light p-3">Coppyright FSVN</footer>
+    <script src="../js/script.js"></script>
+    <script>
+        $.ajax({
+            url: 'http://localhost:3000/data',
+            complete: function (data) {
+                $.each(data.responseJSON.products, function (index,val) { 
+                    $('#data').append(`<div class="col-md-4">
+                    <figure>
+                        <img class="img-fluid hide" src="${val.images}" alt="">
+                        <figcaption>
+                            <h3>${val.name}</h3>
+                            <p>${val.description}</p>
+                        </figcaption>
+                    </figure>
+                </div>`)
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+header {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    height: 70px;
+    transition: .3s all ease-in-out;
+}
+
+.deo-biet-sai-fixed {
+    height: 50px;
+}
+
+.slider img.active {
+    display: block;
+    opacity: 1;
+}
+
+li a {
+    color: white;
+    transition: .3s all ease-in-out;
+}
+
+li a:hover {
+    color: yellow;
+    text-decoration: none;
+
+}
+
+.slider img {
+    opacity: 0;
+    transition: .4s all ease-in-out;
+    width: 100%;
+    position: absolute;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+
+}
+
+.slider a {
+    font-size: 2rem;
+    color: white;
+}
+
+.slider a#next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2rem;
+}
+
+.slider a#prev {
+    left: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hide {
+    opacity: 0;
+}
+
+button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: yellow; 
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+    z-index: 999;
+}

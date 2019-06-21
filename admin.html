@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST" action="/newData">
+        <input value="a" type="text" name="products[name]" id="name" placeholder="Tên sản phẩm">
+        <input value="1" type="text" name="products[images]" id="images" placeholder="Hình ảnh">
+        <input value="1" type="text" name="products[description]" id="description" placeholder="Mô tả">
+        <input type="hidden" name="products[id]" value="">
+        <input name="products[put]" type="submit" value="Click" id="input">
+        <input type="button" value="Clear" id="clear">
+        <input name="products[update]" type="submit" value="Update" id="hihi">
+    </form>
+    <table id="data" style="width:100%;margin-top:20px">
+        <tr>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Mô tả</th>
+            <th>Chức năng</th>
+        </tr>
+    </table>
+    <script src="./js/admin.js"></script>
+    <script>
+        const loadData = () => {
+            $.ajax({
+                url: 'http://localhost:3000/data',
+                complete: function (data) {
+                    $.each(data.responseJSON.products, function (index, val) {
+                        if (data.responseJSON.products[index] != null) {
+                            $('#data').append(`<tr><td>${val.id}</td><td>${val.name}</td><td><img style="width:50px" src="${val.images}"/></td><td>${val.description}</td><td>
+                    <form method="POST" action="/newData">
+                        <input type="submit" name="products[del]" value="${val.id}" id="delete"></form>
+                        <input type="button" value="Update" onClick="updateN(this)"></td></tr>`)
+                        }
+                    });
+                }
+            });
+        };
+        loadData()
+    </script>
+</body>
+
+</html>

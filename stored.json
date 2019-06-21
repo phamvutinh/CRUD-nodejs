@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "giày 1",
+            "images": "./images/product-1.png",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis consectetur ratione fugit nemo neque accusamus est quis doloribus."
+        },
+        {
+            "id": 2,
+            "name": "giày 2",
+            "images": "./images/product-1.png",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis consectetur ratione fugit nemo neque accusamus est quis doloribus."
+        },
+        {
+            "id": 3,
+            "name": "giày 3",
+            "images": "./images/product-1.png",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis consectetur ratione fugit nemo neque accusamus est quis doloribus."
+        }
+    ]
+}
