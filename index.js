@@ -5,10 +5,11 @@ var JsonDB = require("node-json-db");
 const bodyParse = require('body-parser')
 app.use(express.urlencoded())
 app.use(express.json());
+
 function findWithAttr(array, attr, value) {
-	for(var i = 0; i < array.length; i += 1) {
+	for (var i = 0; i < array.length; i += 1) {
 		if (array[i] != null) {
-			if(array[i][attr] === value) {
+			if (array[i][attr] === value) {
 				return i;
 			}
 		}
@@ -30,7 +31,7 @@ app.post('/newData', function (req, res) {
 		"description": req.body.products.description,
 	}
 	if (req.body.products.del != null) {
-		fs.readFile('./js/data.json','utf8',function readFileCallback(err, data){
+		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
 			// delete data.products[parseInt(req.body.products.del)];
 			var id_del = parseInt(req.body.products.del);
@@ -39,13 +40,13 @@ app.post('/newData', function (req, res) {
 					const element = data.products[key];
 					if (element != null) {
 						if (id_del == element.id) {
-							delete data.products[findWithAttr(data.products,"id",id_del)];
+							delete data.products[findWithAttr(data.products, "id", id_del)];
 						}
 					}
 				}
 			}
 			var newData = JSON.stringify(data);
-			fs.writeFile('./js/data.json',newData,function callBack(err,data) {
+			fs.writeFile('./js/data.json', newData, function callBack(err, data) {
 				if (err) {
 					console.log(err);
 				}
@@ -55,7 +56,7 @@ app.post('/newData', function (req, res) {
 	}
 	if (req.body.products.update != null) {
 		var id_edit = parseInt(req.body.products.id);
-		fs.readFile('./js/data.json','utf8',function readFileCallback(err, data){
+		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
 			for (const key in data.products) {
 				if (data.products.hasOwnProperty(key)) {
@@ -68,28 +69,31 @@ app.post('/newData', function (req, res) {
 								"images": req.body.products.images,
 								"description": req.body.products.description,
 							}
-							data.products[findWithAttr(data.products,"id",id_edit)] = newData;
+							data.products[findWithAttr(data.products, "id", id_edit)] = newData;
 							var data_final = JSON.stringify(data);
 						}
 					}
 				}
 			}
-			fs.writeFile('./js/data.json',data_final,function callBack(err,data) {
+			fs.writeFile('./js/data.json', data_final, function callBack(err, data) {
 				if (err) {
 					console.log(err);
 				}
 			})
 		})
 		res.redirect('/admin');
-	}else if (req.body.products.put != null) {
-		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data){
+	} else if (req.body.products.put != null) {
+		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
-			data.products.push({"id": 1,
-			"name": req_data.name,
-			"images": req_data.images,
-			"description": req_data.description})
+			var last = data.products.length;
+			data.products.push({
+				"id": last + 1,
+				"name": req_data.name,
+				"images": req_data.images,
+				"description": req_data.description
+			})
 			var newData = JSON.stringify(data);
-			fs.writeFile('./js/data.json',newData,function callBack(err,data) {
+			fs.writeFile('./js/data.json', newData, function callBack(err, data) {
 				if (err) {
 					console.log(err);
 				}
@@ -97,6 +101,7 @@ app.post('/newData', function (req, res) {
 			res.redirect('/admin');
 		});
 	}
+
 })
 
 
