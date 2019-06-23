@@ -28,10 +28,10 @@
 </head>
 
 <body>
-    <form method="POST" action="/newData" enctype="multipart/form-data">
-        <input value="a" type="text" name="products[name]" id="name" placeholder="Tên sản phẩm">
-        <input type="file" name="products[images2]" id="" accept="image/*" >
-        <input value="1" type="text" name="products[description]" id="description" placeholder="Mô tả">
+    <form onsubmit="return Validate()" method="POST" action="/newData" enctype="multipart/form-data">
+        <input type="text" name="products[name]" id="name" placeholder="Tên sản phẩm">
+        <input type="file" name="products[images]" id="" accept="image/*" >
+        <input type="text" name="products[description]" id="description" placeholder="Mô tả">
         <input type="hidden" name="products[id]" value="">
         <input name="products[put]" type="submit" value="Click" id="input">
         <input type="button" value="Clear" id="clear">

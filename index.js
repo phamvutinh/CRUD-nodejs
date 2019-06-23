@@ -36,7 +36,7 @@ app.get('/admin', function (req, res) {
 })
 
 
-app.post('/newData', upload.single('products[images2]'), function (req, res) {
+app.post('/newData', upload.single('products[images]'), function (req, res) {
 	req_data = {
 		"name": req.body.products.name,
 		"images": req.body.products.images,
@@ -45,7 +45,6 @@ app.post('/newData', upload.single('products[images2]'), function (req, res) {
 	if (req.body.products.del != null) {
 		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
-			// delete data.products[parseInt(req.body.products.del)];
 			var id_del = parseInt(req.body.products.del);
 			for (const key in data.products) {
 				if (data.products.hasOwnProperty(key)) {
