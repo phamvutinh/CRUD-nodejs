@@ -28,9 +28,9 @@
 </head>
 
 <body>
-    <form method="POST" action="/newData">
+    <form method="POST" action="/newData" enctype="multipart/form-data">
         <input value="a" type="text" name="products[name]" id="name" placeholder="Tên sản phẩm">
-        <input value="1" type="text" name="products[images]" id="images" placeholder="Hình ảnh">
+        <input type="file" name="products[images2]" id="" accept="image/*" >
         <input value="1" type="text" name="products[description]" id="description" placeholder="Mô tả">
         <input type="hidden" name="products[id]" value="">
         <input name="products[put]" type="submit" value="Click" id="input">
@@ -54,7 +54,7 @@
                 complete: function (data) {
                     $.each(data.responseJSON.products, function (index, val) {
                         if (data.responseJSON.products[index] != null) {
-                            $('#data').append(`<tr><td>${val.id}</td><td>${val.name}</td><td><img style="width:50px" src="${val.images}"/></td><td>${val.description}</td><td>
+                            $('#data').append(`<tr><td>${val.id}</td><td>${val.name}</td><td><img style="width:50px" src="./uploads/images/${val.images}"/></td><td>${val.description}</td><td>
                     <form method="POST" action="/newData">
                         <input type="submit" name="products[del]" value="${val.id}" id="delete"></form>
                         <input type="button" value="Update" onClick="updateN(this)"></td></tr>`)

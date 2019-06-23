@@ -97,8 +97,7 @@ updateN = (e) => {
     for (const key of valueUpdate) {
         ar.push(key.textContent)
     };
-    [text1.value, text2.value, text3.value,text4.value] = [ar[1], valueUpdate[2].querySelector('img').src, ar[3],ar[0]];
-    
+    [text1.value, text3.value,text4.value] = [ar[1], ar[3],ar[0]];
 }
 document.querySelector('#input').addEventListener('click',() =>{
     console.log([text1.value, text2.value, text3.value]);

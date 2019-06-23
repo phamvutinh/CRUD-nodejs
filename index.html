@@ -63,7 +63,7 @@
                 $.each(data.responseJSON.products, function (index,val) { 
                     $('#data').append(`<div class="col-md-4">
                     <figure>
-                        <img class="img-fluid hide" src="${val.images}" alt="">
+                        <img class="img-fluid hide" src="./uploads/images/${val.images}" alt="">
                         <figcaption>
                             <h3>${val.name}</h3>
                             <p>${val.description}</p>
