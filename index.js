@@ -67,8 +67,7 @@ app.post('/newData', upload.single('products[images2]'), function (req, res) {
 		res.redirect('/admin');
 	}
 	if (req.body.products.update != null) {
-		if (req.body.products.id) {
-			var id_edit = parseInt(req.body.products.id);
+		var id_edit = parseInt(req.body.products.id);
 		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
 			for (const key in data.products) {
@@ -106,9 +105,6 @@ app.post('/newData', upload.single('products[images2]'), function (req, res) {
 			})
 		})
 		res.redirect('/admin');
-		}else{
-			res.redirect('/admin');
-		}
 	} else if (req.body.products.put != null) {
 		fs.readFile('./js/data.json', 'utf8', function readFileCallback(err, data) {
 			data = JSON.parse(data);
