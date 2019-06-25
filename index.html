@@ -60,8 +60,9 @@
         $.ajax({
             url: 'http://localhost:3000/data',
             complete: function (data) {
-                $.each(data.responseJSON.products, function (index,val) { 
-                    $('#data').append(`<div class="col-md-4">
+                $.each(data.responseJSON.products, function (index,val) {
+                    if (val != null) {
+                        $('#data').append(`<div class="col-md-4">
                     <figure>
                         <img class="img-fluid hide" src="./uploads/images/${val.images}" alt="">
                         <figcaption>
@@ -69,7 +70,8 @@
                             <p>${val.description}</p>
                         </figcaption>
                     </figure>
-                </div>`)
+                </div>`) 
+                    }
                 });
             }
         });
